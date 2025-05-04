@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat</title>
+</head>
+<body>
+    <h1>Chat Group: {{ group_name }}</h1>
+    <p>You are logged in as {{ request.user.username }}</p>
+
+    <h3>Users in your company:</h3>
+    <ul id="user-list"></ul>
+
+    <textarea id="chat-log" cols="100" rows="20" readonly></textarea><br>
+    <input id="chat-message-input" type="text" size="100"><br>
+    <button onclick="sendMessage()">Send</button>
+
+    <script>
+        const groupName = "{{ group_name }}";
+        const chatSocket = new WebSocket(
+            'ws://' + window.location.host + '/ws/chat/' + groupName + '/'
+        );
+
+        chatSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+
+            if (data.type === 'user_list') {
+                const userList = document.getElementById('user-list');
+                userList.innerHTML = '';
+                data.usernames.forEach(username => {
+                    const li = document.createElement('li');
+                    li.textContent = username;
+                    userList.appendChild(li);
+                });
+            } else if (data.type === 'chat_message' || data.message) {
+                const user = data.user || 'System';
+                const message = data.message || '';
+                document.getElementById('chat-log').value += user + ': ' + message + '\n';
+            }
+        };
+
+        function sendMessage() {
+            const input = document.getElementById('chat-message-input');
+            if (input.value.trim() !== '') {
+                chatSocket.send(JSON.stringify({
+                    'message': input.value
+                }));
+                input.value = '';
+            }
+        }
+    </script>
+</body>
+</html>
