@@ -61,12 +61,12 @@ daphne -b 0.0.0.0 -p 8000 my_superchat.asgi:application
 ```
 
 🧪 Usage
-	1.	Go to the admin panel: http://localhost:8000/admin/
-	2.	Create a Company
-	3.	Create User accounts and assign them Profile objects linked to a Company
-	4.	Log in with one of the users at: http://localhost:8000/login/
-	5.	Join a group via URL: http://localhost:8000/chat/company_<company_id>/
-	6.	Test the WebSocket connection by sending messages or triggering a company update:
+	1.	Go to the admin panel: http://localhost:8000/admin/  
+	2.	Create a Company  
+	3.	Create User accounts and assign them Profile objects linked to a Company  
+	4.	Log in with one of the users at: http://localhost:8000/login/  
+	5.	Join a group via URL: http://localhost:8000/chat/company_<company_id>/  
+	6.	Test the WebSocket connection by sending messages or triggering a company update:  
 
 Trigger a company name update
 
