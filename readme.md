@@ -60,7 +60,7 @@ python manage.py createsuperuser
 daphne -b 0.0.0.0 -p 8000 my_superchat.asgi:application
 ```
 
-🧪 Usage
+🧪 Usage  
 	1.	Go to the admin panel: http://localhost:8000/admin/  
 	2.	Create a Company  
 	3.	Create User accounts and assign them Profile objects linked to a Company  
@@ -77,8 +77,8 @@ Body (form-data):
 name: New Company Name
 ```
 
-💡 Notes
-	•	Redis must be running locally on port 6379.
-	•	The app uses Django Channels with Redis as the backing store.
-	•	Users must be authenticated and have a related Profile to join the chat.
-	•	Messages do not persist — the app is designed for real-time, not history.
+💡 Notes  
+	•	Redis must be running locally on port 6379.  
+	•	The app uses Django Channels with Redis as the backing store.  
+	•	Users must be authenticated and have a related Profile to join the chat.  
+	•	Messages do not persist — the app is designed for real-time, not history.  
